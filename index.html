@@ -111,27 +111,87 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 12px}
 </main>
 <footer>LeadRescue © 2026 · Démonstration uniquement · Aucune messagerie connectée</footer>
 <script>
-let reminderCount=0;
-const notice=document.getElementById('notice');
-document.getElementById('sort').addEventListener('click',()=>{
-  const period=document.getElementById('period');
-  notice.textContent='Tri de démonstration terminé — période : '+period.options[period.selectedIndex].text+'. Ces résultats sont fictifs, aucune IA réelle n’a été appelée.';
-  document.getElementById('todo').textContent='2';
-  document.querySelectorAll('.email').forEach(card=>{
-    card.querySelector('.result').classList.remove('hidden');
-    card.querySelector('.result').textContent='Résultat simulé : '+card.dataset.priority+'. Vérifiez toujours la priorité proposée.';
+
+const STORAGE_KEY = "leadrescue-demo-reminders";
+
+function getReminders() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveReminders(reminders) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(reminders));
+}
+
+function renderReminders() {
+  const reminders = getReminders();
+  document.getElementById("reminders").textContent = reminders.length;
+
+  document.querySelectorAll(".email").forEach(card => {
+    const button = card.querySelector(".reminder");
+    const title = card.querySelector("h3").textContent;
+    const reminder = reminders.find(item => item.title === title);
+
+    button.disabled = Boolean(reminder);
+    button.textContent = reminder
+      ? "✓ Relance prévue le " + reminder.date
+      : "＋ Ajouter un rappel";
+  });
+}
+
+document.getElementById("sort").addEventListener("click", () => {
+  const period = document.getElementById("period");
+  const notice = document.getElementById("notice");
+
+  notice.textContent =
+    "Tri de démonstration terminé — période : " +
+    period.options[period.selectedIndex].text +
+    ". Aucun email réel ni modèle IA n’a été utilisé.";
+
+  document.querySelectorAll(".email").forEach(card => {
+    const result = card.querySelector(".result");
+    result.classList.remove("hidden");
+    result.textContent =
+      "Résultat simulé : " + card.dataset.priority +
+      ". Vérifiez toujours la priorité proposée.";
   });
 });
-document.querySelectorAll('.reminder').forEach(button=>{
-  button.addEventListener('click',()=>{
-    if(button.disabled)return;
-    reminderCount++;
-    document.getElementById('reminders').textContent=reminderCount;
-    button.textContent='✓ Rappel de démonstration ajouté';
-    button.disabled=true;
-    button.setAttribute('aria-label','Rappel de démonstration ajouté');
+
+document.querySelectorAll(".reminder").forEach(button => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".email");
+    const title = card.querySelector("h3").textContent;
+
+    if (getReminders().some(item => item.title === title)) return;
+
+    const date = prompt(
+      "Date de relance (AAAA-MM-JJ) :",
+      new Date(Date.now() + 86400000).toISOString().slice(0, 10)
+    );
+
+    if (!date) return;
+
+    const parsed = new Date(date + "T12:00:00");
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+        Number.isNaN(parsed.getTime()) ||
+        parsed.toISOString().slice(0, 10) !== date) {
+      alert("Date invalide. Exemple : 2026-10-24");
+      return;
+    }
+
+    const reminders = getReminders();
+    reminders.push({ title, date });
+    saveReminders(reminders);
+    renderReminders();
   });
 });
+
+renderReminders();
+
 </script>
 </body>
 </html>
