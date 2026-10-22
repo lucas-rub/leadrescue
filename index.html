@@ -5,6 +5,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LeadRescue — Ne perdez plus vos prospects</title>
+
+/* Calendrier des rappels */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-backdrop.hidden { display: none; }
+.calendar-modal {
+  width: 100%;
+  max-width: 360px;
+  background: #131b2e;
+  border: 1px solid #34425d;
+  border-radius: 18px;
+  padding: 18px;
+}
+.calendar-modal h2 { margin-top: 0; }
+.calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+}
+.calendar-head button, .calendar-day {
+  background: #202c43;
+  color: white;
+  border: 1px solid #34425d;
+  border-radius: 8px;
+  padding: 9px;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0,1fr));
+  gap: 5px;
+  text-align: center;
+}
+.calendar-day { padding: 10px 0; }
+.calendar-day.selected {
+  background: #6595ff;
+  color: #081020;
+  font-weight: 800;
+}
+.calendar-day:disabled { opacity: .25; }
+.calendar-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.calendar-actions button { flex: 1; }
+.plan { cursor: pointer; transition: border-color .2s; }
+.plan:focus-visible { outline: 2px solid #6595ff; }
+.plan-details { margin-top: 12px; }
+.plan-details[hidden] { display: none; }
+.plan-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.popular {
+  background: #24365a;
+  color: #b9d0ff;
+  border-radius: 20px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
 <style>
 :root{color-scheme:dark;--bg:#0b1020;--panel:#131b2e;--line:#28334a;--blue:#6595ff;--muted:#9ba9c2;--green:#5de0b0}
 *{box-sizing:border-box}
