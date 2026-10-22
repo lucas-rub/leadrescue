@@ -48,6 +48,25 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 12px}
   <div class="logo">Lead<span>Rescue</span></div>
   <div class="tag">● PROTOTYPE</div>
 </header>
+
+<div id="calendarModal" class="modal-backdrop hidden">
+  <section class="calendar-modal" role="dialog"
+    aria-modal="true" aria-labelledby="calendarTitle">
+    <h2 id="calendarTitle">Planifier une relance</h2>
+    <p id="calendarEmail"></p>
+    <div class="calendar-head">
+      <button type="button" id="prevMonth" aria-label="Mois précédent">‹</button>
+      <strong id="monthLabel"></strong>
+      <button type="button" id="nextMonth" aria-label="Mois suivant">›</button>
+    </div>
+    <div id="calendarGrid" class="calendar-grid"></div>
+    <p id="selectedDate">Choisissez une date.</p>
+    <div class="calendar-actions">
+      <button type="button" class="secondary" id="cancelCalendar">Annuler</button>
+      <button type="button" id="confirmCalendar" disabled>Confirmer</button>
+    </div>
+  </section>
+</div>
 <main>
   <div class="eyebrow">Votre espace commercial</div>
   <h1>Ne laissez plus filer vos prospects.</h1>
