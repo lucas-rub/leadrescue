@@ -4,65 +4,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
 <title>LeadRescue — Ne perdez plus vos prospects</title>
-<style>
-:root{color-scheme:dark;--bg:#0b1020;--panel:#131b2e;--line:#28334a;--blue:#6595ff;--muted:#9ba9c2;--green:#5de0b0}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#f4f7ff;font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{padding:22px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.logo{font-size:22px;font-weight:800;letter-spacing:-.7px}.logo span{color:var(--blue)}
-.tag{font-size:11px;color:var(--green);border:1px solid #285b51;border-radius:20px;padding:6px 9px}
-main{max-width:950px;margin:auto;padding:24px 16px 50px}
-h1{font-size:30px;letter-spacing:-1px;margin:8px 0}
-p{color:var(--muted);line-height:1.55}
-.eyebrow{color:var(--blue);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
-.stat,.panel,.email,.plan{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:15px}
-.stat strong{display:block;font-size:24px;margin:9px 0 4px}.stat small{color:var(--muted)}
-.panel{margin:16px 0}
-.panel h2{font-size:18px;margin:0 0 8px}
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
-select,button{font:inherit;border-radius:10px;padding:12px;border:1px solid var(--line)}
-select{background:#0b1020;color:white;flex:1;min-width:155px}
-button{background:var(--blue);color:#081020;font-weight:750;border:0;cursor:pointer}
-button:active{transform:scale(.98)}
-button.secondary{background:#202c43;color:white;border:1px solid var(--line)}
-button:disabled{opacity:.5}
-.email{margin-top:12px}
-.emailtop{display:flex;justify-content:space-between;gap:10px;align-items:start}
-.email h3{font-size:15px;margin:0 0 6px}
-.email p{margin:5px 0 12px;font-size:14px}
-.pill{display:inline-block;padding:5px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
-.urgent{color:#ffaaa9;background:#48252f}.important{color:#ffd18a;background:#47371f}.follow{color:#9fc1ff;background:#24365a}.low{color:#b9c4d8;background:#2a3446}
-.meta{color:var(--muted);font-size:12px}
-.result{color:var(--green);font-size:13px;margin-top:10px}
-.hidden{display:none}
-.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.plan h3{margin:0 0 8px}.price{font-size:22px;font-weight:800}.plan p{font-size:12px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 12px}
-@media(max-width:520px){.stats{gap:7px}.stat{padding:10px}.stat strong{font-size:20px}.stat small{font-size:10px}.plans{grid-template-columns:1fr}.emailtop{flex-direction:column;gap:7px}h1{font-size:26px}}
 
-/* Calendrier des rappels */
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #0b1020;
+  --panel: #131b2e;
+  --line: #28334a;
+  --blue: #6595ff;
+  --muted: #9ba9c2;
+  --green: #5de0b0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f4f7ff;
+  font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+header {
+  padding: 22px 18px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.logo { font-size: 22px; font-weight: 800; letter-spacing: -.7px; }
+.logo span { color: var(--blue); }
+.tag {
+  font-size: 11px;
+  color: var(--green);
+  border: 1px solid #285b51;
+  border-radius: 20px;
+  padding: 6px 9px;
+}
+main { max-width: 950px; margin: auto; padding: 24px 16px 50px; }
+h1 { font-size: 30px; letter-spacing: -1px; margin: 8px 0; }
+p { color: var(--muted); line-height: 1.55; }
+.eyebrow {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+.stat, .panel, .email, .plan {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 15px;
+}
+.stat strong { display: block; font-size: 24px; margin: 9px 0 4px; }
+.stat small { color: var(--muted); }
+.panel { margin: 16px 0; }
+.panel h2 { font-size: 18px; margin: 0 0 8px; }
+.controls { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+select, button { font: inherit; border-radius: 10px; padding: 12px; border: 1px solid var(--line); }
+select { background: var(--bg); color: white; flex: 1; min-width: 155px; }
+button {
+  background: var(--blue);
+  color: #081020;
+  font-weight: 750;
+  border: 0;
+  cursor: pointer;
+}
+button:active { transform: scale(.98); }
+button.secondary { background: #202c43; color: white; border: 1px solid var(--line); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button:focus-visible, .plan:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.email { margin-top: 12px; }
+.emailtop {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+.email h3 { font-size: 15px; margin: 0 0 6px; }
+.email p { margin: 5px 0 12px; font-size: 14px; }
+.pill {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.urgent { color: #ffaaa9; background: #48252f; }
+.important { color: #ffd18a; background: #47371f; }
+.low { color: #b9c4d8; background: #2a3446; }
+.meta { color: var(--muted); font-size: 12px; }
+.result { color: var(--green); font-size: 13px; margin-top: 10px; }
+.hidden { display: none !important; }
+
+/* Abonnements */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.plan {
+  cursor: pointer;
+  transition: border-color .2s, transform .2s;
+}
+.plan:hover { border-color: var(--blue); }
+.plan h3 { margin: 0; font-size: 17px; }
+.plan-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.plan-arrow { color: var(--blue); font-size: 20px; }
+.price { font-size: 22px; font-weight: 800; margin-top: 12px; }
+.price small { font-size: 12px; color: var(--muted); font-weight: 400; }
+.plan p { font-size: 12px; }
+.plan-details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 8px; }
+.plan-details p { margin: 10px 0; }
+.popular {
+  background: #24365a;
+  color: #b9d0ff;
+  border-radius: 20px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* Fenêtre du calendrier */
 .modal-backdrop {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0,0,0,.75);
+  background: rgba(0,0,0,.78);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
 }
-.modal-backdrop.hidden { display: none; }
 .calendar-modal {
   width: 100%;
   max-width: 360px;
-  background: #131b2e;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--panel);
   border: 1px solid #34425d;
   border-radius: 18px;
   padding: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
 }
-.calendar-modal h2 { margin-top: 0; }
+.calendar-modal h2 { font-size: 20px; margin: 0 0 8px; }
 .calendar-head {
   display: flex;
   justify-content: space-between;
@@ -79,191 +181,235 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 12px}
 }
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0,1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 5px;
   text-align: center;
 }
-.calendar-day { padding: 10px 0; }
-.calendar-day.selected {
-  background: #6595ff;
-  color: #081020;
-  font-weight: 800;
-}
-.calendar-day:disabled { opacity: .25; }
-.calendar-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-}
+.calendar-grid > span { padding: 7px 0; font-size: 12px; color: var(--muted); }
+.calendar-day { padding: 10px 0; min-width: 0; }
+.calendar-day.selected { background: var(--blue); color: #081020; font-weight: 800; }
+.calendar-day:disabled { opacity: .25; cursor: not-allowed; }
+.calendar-actions { display: flex; gap: 8px; margin-top: 16px; }
 .calendar-actions button { flex: 1; }
-.plan { cursor: pointer; transition: border-color .2s; }
-.plan:focus-visible { outline: 2px solid #6595ff; }
-.plan-details { margin-top: 12px; }
-.plan-details[hidden] { display: none; }
-.plan-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  flex-wrap: wrap;
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 25px 12px;
 }
-.popular {
-  background: #24365a;
-  color: #b9d0ff;
-  border-radius: 20px;
-  padding: 5px 8px;
-  font-size: 10px;
-  font-weight: 800;
+@media (max-width: 650px) {
+  .plans { grid-template-columns: 1fr; }
 }
-
+@media (max-width: 520px) {
+  .stats { gap: 7px; }
+  .stat { padding: 10px; }
+  .stat strong { font-size: 20px; }
+  .stat small { font-size: 10px; }
+  .emailtop { flex-direction: column; gap: 7px; }
+  h1 { font-size: 26px; }
+  header { padding: 18px 14px; }
+}
 </style>
 </head>
+
 <body>
 <header>
   <div class="logo">Lead<span>Rescue</span></div>
   <div class="tag">● PROTOTYPE</div>
 </header>
 
-<div id="calendarModal" class="modal-backdrop hidden">
-  <section class="calendar-modal" role="dialog"
-    aria-modal="true" aria-labelledby="calendarTitle">
-    <h2 id="calendarTitle">Planifier une relance</h2>
-    <p id="calendarEmail"></p>
-    <div class="calendar-head">
-      <button type="button" id="prevMonth" aria-label="Mois précédent">‹</button>
-      <strong id="monthLabel"></strong>
-      <button type="button" id="nextMonth" aria-label="Mois suivant">›</button>
-    </div>
-    <div id="calendarGrid" class="calendar-grid"></div>
-    <p id="selectedDate">Choisissez une date.</p>
-    <div class="calendar-actions">
-      <button type="button" class="secondary" id="cancelCalendar">Annuler</button>
-      <button type="button" id="confirmCalendar" disabled>Confirmer</button>
-    </div>
-  </section>
-</div>
 <main>
   <div class="eyebrow">Votre espace commercial</div>
   <h1>Ne laissez plus filer vos prospects.</h1>
   <p>Repérez les opportunités importantes et gardez le contrôle de vos relances.</p>
 
   <section class="stats">
-    <div class="stat"><small>Emails de démonstration</small><strong>3</strong><small>Exemples fictifs</small></div>
-    <div class="stat"><small>À traiter</small><strong id="todo">2</strong><small>Estimation de démonstration</small></div>
-    <div class="stat"><small>Rappels enregistrés</small><strong id="reminders">0</strong><small>Dans cette session</small></div>
+    <div class="stat">
+      <small>Emails de démonstration</small>
+      <strong>3</strong>
+      <small>Exemples fictifs</small>
+    </div>
+    <div class="stat">
+      <small>À traiter</small>
+      <strong id="todo">2</strong>
+      <small>Estimation de démonstration</small>
+    </div>
+    <div class="stat">
+      <small>Rappels enregistrés</small>
+      <strong id="reminders">0</strong>
+      <small>Sur cet appareil</small>
+    </div>
   </section>
 
   <section class="panel">
     <h2>Tri intelligent des emails</h2>
-    <p>Choisissez la période, puis lancez la démonstration. Aucun email réel n'est consulté.</p>
+    <p>Choisissez une période et lancez la démonstration. Aucun email réel n'est consulté.</p>
     <div class="controls">
       <select id="period" aria-label="Période à analyser">
         <option value="new">Nouveaux emails</option>
         <option value="7">7 derniers jours</option>
         <option value="30">30 derniers jours</option>
       </select>
-      <button id="sort">✦ Lancer le tri IA</button>
+      <button type="button" id="sort">✦ Lancer le tri IA</button>
     </div>
-    <div id="notice" class="result" role="status">Prêt à analyser les exemples fictifs.</div>
+    <div id="notice" class="result" role="status" aria-live="polite">
+      Prêt à analyser les exemples fictifs.
+    </div>
   </section>
 
   <section class="panel">
     <h2>Boîte de réception</h2>
-    <p>Les messages suivants sont inventés pour tester l'interface.</p>
+    <p>Ces messages sont inventés pour tester l'interface.</p>
+
     <div class="email" data-priority="urgent">
-      <div class="emailtop"><div><h3>Demande de devis — Projet de rénovation</h3><div class="meta">Camille Martin · Exemple fictif</div></div><span class="pill urgent">Urgent</span></div>
+      <div class="emailtop">
+        <div>
+          <h3>Demande de devis — Projet de rénovation</h3>
+          <div class="meta">Camille Martin · Exemple fictif</div>
+        </div>
+        <span class="pill urgent">Urgent</span>
+      </div>
       <p>Bonjour, pourriez-vous m'envoyer une estimation avant vendredi ?</p>
       <div class="meta">Catégorie : Prospect · Action suggérée : préparer le devis</div>
       <div class="result hidden"></div>
-      <button class="secondary reminder">＋ Ajouter un rappel</button>
+      <button type="button" class="secondary reminder">＋ Ajouter un rappel</button>
     </div>
+
     <div class="email" data-priority="important">
-      <div class="emailtop"><div><h3>Suite à notre rendez-vous</h3><div class="meta">Alex Bernard · Exemple fictif</div></div><span class="pill important">Important</span></div>
+      <div class="emailtop">
+        <div>
+          <h3>Suite à notre rendez-vous</h3>
+          <div class="meta">Alex Bernard · Exemple fictif</div>
+        </div>
+        <span class="pill important">Important</span>
+      </div>
       <p>Merci pour notre échange. Je souhaite recevoir les prochaines étapes.</p>
       <div class="meta">Catégorie : Prospect · Action suggérée : envoyer un récapitulatif</div>
       <div class="result hidden"></div>
-      <button class="secondary reminder">＋ Ajouter un rappel</button>
+      <button type="button" class="secondary reminder">＋ Ajouter un rappel</button>
     </div>
+
     <div class="email" data-priority="low">
-      <div class="emailtop"><div><h3>Votre newsletter hebdomadaire</h3><div class="meta">Actualités du secteur · Exemple fictif</div></div><span class="pill low">Faible priorité</span></div>
+      <div class="emailtop">
+        <div>
+          <h3>Votre newsletter hebdomadaire</h3>
+          <div class="meta">Actualités du secteur · Exemple fictif</div>
+        </div>
+        <span class="pill low">Faible priorité</span>
+      </div>
       <p>Découvrez les nouveautés et les actualités de la semaine.</p>
       <div class="meta">Catégorie : Newsletter · Action suggérée : aucune action commerciale évidente</div>
       <div class="result hidden"></div>
-      <button class="secondary reminder">＋ Ajouter un rappel</button>
+      <button type="button" class="secondary reminder">＋ Ajouter un rappel</button>
     </div>
   </section>
 
   <section class="panel">
     <h2>Choisissez votre formule</h2>
-    <p>Tarifs envisagés — aucun abonnement ni paiement n'est actif sur ce prototype.</p>
+    <p>Tarifs envisagés : aucun abonnement ni paiement n'est actif sur ce prototype.</p>
+
     <div class="plans">
+      <div class="plan" role="button" tabindex="0"
+           aria-expanded="false" aria-controls="details-lite" data-plan="lite">
+        <div class="plan-heading">
+          <h3>Lite</h3><span class="plan-arrow" aria-hidden="true">⌄</span>
+        </div>
+        <div class="price">24,99 €<small>/mois</small></div>
+        <div class="plan-details" id="details-lite" hidden>
+          <p>✓ Tri manuel des emails</p>
+          <p>✓ Priorités personnalisées</p>
+          <p>✓ Jusqu'à 10 rappels actifs prévus</p>
+          <p>✓ Historique de démonstration</p>
+        </div>
+        <p class="plan-hint">Appuyez pour découvrir les avantages.</p>
+      </div>
 
-<div class="plans">
-  <div class="plan" role="button" tabindex="0"
-       aria-expanded="false" aria-controls="details-lite"
-       data-plan="lite">
-    <div class="plan-heading"><h3>Lite</h3><span>⌄</span></div>
-    <div class="price">24,99 €<small>/mois</small></div>
-    <div class="plan-details" id="details-lite" hidden>
-      <p>✓ Tri manuel des emails</p>
-      <p>✓ Priorités personnalisées</p>
-      <p>✓ Jusqu’à 10 rappels actifs</p>
-      <p>✓ Historique de démonstration</p>
-    </div>
-    <p>Appuyez pour découvrir les avantages.</p>
-  </div>
+      <div class="plan" role="button" tabindex="0"
+           aria-expanded="false" aria-controls="details-pro" data-plan="pro"
+           style="border-color:var(--blue)">
+        <div class="plan-heading">
+          <h3>Pro</h3>
+          <span class="popular">LE PLUS CHOISI</span>
+        </div>
+        <div class="price">34,99 €<small>/mois</small></div>
+        <div class="plan-details" id="details-pro" hidden>
+          <p>✓ Tout Lite</p>
+          <p>✓ Tri IA des emails envisagé</p>
+          <p>✓ Priorisation des prospects</p>
+          <p>✓ Rappels sans limite de forfait prévue</p>
+          <p>✓ Suggestions de relance par IA</p>
+        </div>
+        <p class="plan-hint">Appuyez pour découvrir les avantages.</p>
+      </div>
 
-  <div class="plan" role="button" tabindex="0"
-       aria-expanded="false" aria-controls="details-pro"
-       data-plan="pro" style="border-color:var(--blue)">
-    <div class="plan-heading">
-      <h3>Pro</h3>
-      <span class="popular">LE PLUS CHOISI</span>
-    </div>
-    <div class="price">34,99 €<small>/mois</small></div>
-    <div class="plan-details" id="details-pro" hidden>
-      <p>✓ Tout Lite</p>
-      <p>✓ Tri IA des emails</p>
-      <p>✓ Priorisation des prospects</p>
-      <p>✓ Rappels sans limite de forfait prévue</p>
-      <p>✓ Suggestions de relance par IA</p>
-    </div>
-    <p>Appuyez pour découvrir les avantages.</p>
-  </div>
-
-  <div class="plan" role="button" tabindex="0"
-       aria-expanded="false" aria-controls="details-business"
-       data-plan="business">
-    <div class="plan-heading"><h3>Business</h3><span>⌄</span></div>
-    <div class="price">74,99 €<small>/mois</small></div>
-    <div class="plan-details" id="details-business" hidden>
-      <p>✓ Tout Pro</p>
-      <p>✓ Gestion de plusieurs collaborateurs</p>
-      <p>✓ Suivi partagé des prospects</p>
-      <p>✓ Statistiques avancées</p>
-      <p>✓ Assistance prioritaire envisagée</p>
-    </div>
-    <p>Appuyez pour découvrir les avantages.</p>
-  </div>
-</div>
+      <div class="plan" role="button" tabindex="0"
+           aria-expanded="false" aria-controls="details-business" data-plan="business">
+        <div class="plan-heading">
+          <h3>Business</h3><span class="plan-arrow" aria-hidden="true">⌄</span>
+        </div>
+        <div class="price">74,99 €<small>/mois</small></div>
+        <div class="plan-details" id="details-business" hidden>
+          <p>✓ Tout Pro</p>
+          <p>✓ Gestion de plusieurs collaborateurs</p>
+          <p>✓ Suivi partagé des prospects</p>
+          <p>✓ Statistiques avancées</p>
+          <p>✓ Assistance prioritaire envisagée</p>
+        </div>
+        <p class="plan-hint">Appuyez pour découvrir les avantages.</p>
+      </div>
     </div>
   </section>
 </main>
-<footer>LeadRescue © 2026 · Démonstration uniquement · Aucune messagerie connectée</footer>
+
+<footer>
+  LeadRescue © 2026 · Démonstration uniquement · Aucune messagerie connectée
+</footer>
+
+<!-- Fenêtre du calendrier -->
+<div id="calendarModal" class="modal-backdrop hidden">
+  <section class="calendar-modal" role="dialog"
+           aria-modal="true" aria-labelledby="calendarTitle">
+    <h2 id="calendarTitle">Planifier une relance</h2>
+    <p id="calendarEmail"></p>
+
+    <div class="calendar-head">
+      <button type="button" class="secondary" id="prevMonth" aria-label="Mois précédent">‹</button>
+      <strong id="monthLabel"></strong>
+      <button type="button" class="secondary" id="nextMonth" aria-label="Mois suivant">›</button>
+    </div>
+
+    <div id="calendarGrid" class="calendar-grid"></div>
+    <p id="selectedDate" aria-live="polite">Choisissez une date.</p>
+
+    <div class="calendar-actions">
+      <button type="button" class="secondary" id="cancelCalendar">Annuler</button>
+      <button type="button" id="confirmCalendar" disabled>Confirmer</button>
+    </div>
+  </section>
+</div>
+
 <script>
+"use strict";
 
 const STORAGE_KEY = "leadrescue-demo-reminders";
 
 function getReminders() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    return Array.isArray(saved) ? saved : [];
   } catch (error) {
     return [];
   }
 }
 
-function saveReminders(reminders) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(reminders));
+function saveReminders(items) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    return true;
+  } catch (error) {
+    alert("Impossible d'enregistrer les rappels dans ce navigateur.");
+    return false;
+  }
 }
 
 function renderReminders() {
@@ -273,15 +419,16 @@ function renderReminders() {
   document.querySelectorAll(".email").forEach(card => {
     const button = card.querySelector(".reminder");
     const title = card.querySelector("h3").textContent;
-    const reminder = reminders.find(item => item.title === title);
+    const item = reminders.find(reminder => reminder.title === title);
 
-    button.disabled = Boolean(reminder);
-    button.textContent = reminder
-      ? "✓ Relance prévue le " + reminder.date
+    button.disabled = Boolean(item);
+    button.textContent = item
+      ? "✓ Relance prévue le " + item.date
       : "＋ Ajouter un rappel";
   });
 }
 
+// Tri de démonstration : aucun modèle IA n'est exécuté.
 document.getElementById("sort").addEventListener("click", () => {
   const period = document.getElementById("period");
   const notice = document.getElementById("notice");
@@ -289,7 +436,7 @@ document.getElementById("sort").addEventListener("click", () => {
   notice.textContent =
     "Tri de démonstration terminé — période : " +
     period.options[period.selectedIndex].text +
-    ". Aucun email réel ni modèle IA n’a été utilisé.";
+    ". Aucun email réel ni modèle IA n'a été utilisé.";
 
   document.querySelectorAll(".email").forEach(card => {
     const result = card.querySelector(".result");
@@ -300,38 +447,211 @@ document.getElementById("sort").addEventListener("click", () => {
   });
 });
 
+// Calendrier
+const modal = document.getElementById("calendarModal");
+const grid = document.getElementById("calendarGrid");
+const monthLabel = document.getElementById("monthLabel");
+const selectedLabel = document.getElementById("selectedDate");
+const confirmButton = document.getElementById("confirmCalendar");
+
+let activeCard = null;
+let selectedDate = "";
+let shownYear;
+let shownMonth;
+let previousFocus = null;
+
+function localDateString(year, month, day) {
+  return year + "-" +
+    String(month + 1).padStart(2, "0") + "-" +
+    String(day).padStart(2, "0");
+}
+
+function getToday() {
+  const date = new Date();
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
+function renderCalendar() {
+  grid.replaceChildren();
+
+  monthLabel.textContent = new Date(shownYear, shownMonth, 1)
+    .toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
+
+  ["L", "M", "M", "J", "V", "S", "D"].forEach(letter => {
+    const label = document.createElement("span");
+    label.textContent = letter;
+    grid.appendChild(label);
+  });
+
+  const firstDay = new Date(shownYear, shownMonth, 1);
+  const offset = (firstDay.getDay() + 6) % 7;
+  const totalDays = new Date(shownYear, shownMonth + 1, 0).getDate();
+
+  for (let i = 0; i < offset; i++) {
+    grid.appendChild(document.createElement("span"));
+  }
+
+  for (let day = 1; day <= totalDays; day++) {
+    const value = localDateString(shownYear, shownMonth, day);
+    const date = new Date(shownYear, shownMonth, day);
+    date.setHours(0, 0, 0, 0);
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "calendar-day";
+    button.textContent = day;
+    button.setAttribute("aria-label", date.toLocaleDateString("fr-FR"));
+    button.disabled = date < getToday();
+
+    if (value === selectedDate) {
+      button.classList.add("selected");
+      button.setAttribute("aria-pressed", "true");
+    } else {
+      button.setAttribute("aria-pressed", "false");
+    }
+
+    button.addEventListener("click", () => {
+      selectedDate = value;
+      selectedLabel.textContent =
+        "Relance prévue le " + date.toLocaleDateString("fr-FR");
+      confirmButton.disabled = false;
+      renderCalendar();
+    });
+
+    grid.appendChild(button);
+  }
+
+  document.getElementById("prevMonth").disabled =
+    shownYear === getToday().getFullYear() &&
+    shownMonth === getToday().getMonth();
+}
+
+function openCalendar(card) {
+  activeCard = card;
+  previousFocus = document.activeElement;
+
+  document.getElementById("calendarEmail").textContent =
+    card.querySelector("h3").textContent;
+
+  selectedDate = "";
+  const now = getToday();
+  shownYear = now.getFullYear();
+  shownMonth = now.getMonth();
+
+  selectedLabel.textContent = "Choisissez une date.";
+  confirmButton.disabled = true;
+  modal.classList.remove("hidden");
+  renderCalendar();
+  document.getElementById("cancelCalendar").focus();
+}
+
+function closeCalendar() {
+  modal.classList.add("hidden");
+  activeCard = null;
+
+  if (previousFocus) previousFocus.focus();
+}
+
 document.querySelectorAll(".reminder").forEach(button => {
   button.addEventListener("click", () => {
     const card = button.closest(".email");
     const title = card.querySelector("h3").textContent;
 
     if (getReminders().some(item => item.title === title)) return;
+    openCalendar(card);
+  });
+});
 
-    const date = prompt(
-      "Date de relance (AAAA-MM-JJ) :",
-      new Date(Date.now() + 86400000).toISOString().slice(0, 10)
-    );
+document.getElementById("prevMonth").addEventListener("click", () => {
+  if (shownYear === getToday().getFullYear() &&
+      shownMonth === getToday().getMonth()) return;
 
-    if (!date) return;
+  shownMonth--;
+  if (shownMonth < 0) {
+    shownMonth = 11;
+    shownYear--;
+  }
+  renderCalendar();
+});
 
-    const parsed = new Date(date + "T12:00:00");
+document.getElementById("nextMonth").addEventListener("click", () => {
+  shownMonth++;
+  if (shownMonth > 11) {
+    shownMonth = 0;
+    shownYear++;
+  }
+  renderCalendar();
+});
 
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) ||
-        Number.isNaN(parsed.getTime()) ||
-        parsed.toISOString().slice(0, 10) !== date) {
-      alert("Date invalide. Exemple : 2026-10-24");
-      return;
+document.getElementById("cancelCalendar").addEventListener("click", closeCalendar);
+
+confirmButton.addEventListener("click", () => {
+  if (!activeCard || !selectedDate) return;
+
+  const title = activeCard.querySelector("h3").textContent;
+  const reminders = getReminders();
+
+  if (reminders.some(item => item.title === title)) {
+    closeCalendar();
+    renderReminders();
+    return;
+  }
+
+  reminders.push({ title: title, date: selectedDate });
+
+  if (saveReminders(reminders)) {
+    closeCalendar();
+    renderReminders();
+  }
+});
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) closeCalendar();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeCalendar();
+  }
+});
+
+// Cartes d'abonnement : ouvrir et fermer les avantages.
+document.querySelectorAll(".plan[data-plan]").forEach(plan => {
+  function togglePlan() {
+    const details = plan.querySelector(".plan-details");
+    const hint = plan.querySelector(".plan-hint");
+    const arrow = plan.querySelector(".plan-arrow");
+    const opening = details.hidden;
+
+    details.hidden = !opening;
+    plan.setAttribute("aria-expanded", String(opening));
+
+    if (hint) {
+      hint.textContent = opening
+        ? "Appuyez pour réduire."
+        : "Appuyez pour découvrir les avantages.";
     }
 
-    const reminders = getReminders();
-    reminders.push({ title, date });
-    saveReminders(reminders);
-    renderReminders();
+    if (arrow) arrow.textContent = opening ? "⌃" : "⌄";
+  }
+
+  plan.addEventListener("click", event => {
+    if (event.target.closest("a, button")) return;
+    togglePlan();
+  });
+
+  plan.addEventListener("keydown", event => {
+    if (event.target !== plan) return;
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      togglePlan();
+    }
   });
 });
 
 renderReminders();
-
 </script>
 </body>
 </html>
