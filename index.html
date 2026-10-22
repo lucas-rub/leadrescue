@@ -41,6 +41,81 @@ button:disabled{opacity:.5}
 .plan h3{margin:0 0 8px}.price{font-size:22px;font-weight:800}.plan p{font-size:12px}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 12px}
 @media(max-width:520px){.stats{gap:7px}.stat{padding:10px}.stat strong{font-size:20px}.stat small{font-size:10px}.plans{grid-template-columns:1fr}.emailtop{flex-direction:column;gap:7px}h1{font-size:26px}}
+
+/* Calendrier des rappels */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-backdrop.hidden { display: none; }
+.calendar-modal {
+  width: 100%;
+  max-width: 360px;
+  background: #131b2e;
+  border: 1px solid #34425d;
+  border-radius: 18px;
+  padding: 18px;
+}
+.calendar-modal h2 { margin-top: 0; }
+.calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+}
+.calendar-head button, .calendar-day {
+  background: #202c43;
+  color: white;
+  border: 1px solid #34425d;
+  border-radius: 8px;
+  padding: 9px;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0,1fr));
+  gap: 5px;
+  text-align: center;
+}
+.calendar-day { padding: 10px 0; }
+.calendar-day.selected {
+  background: #6595ff;
+  color: #081020;
+  font-weight: 800;
+}
+.calendar-day:disabled { opacity: .25; }
+.calendar-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.calendar-actions button { flex: 1; }
+.plan { cursor: pointer; transition: border-color .2s; }
+.plan:focus-visible { outline: 2px solid #6595ff; }
+.plan-details { margin-top: 12px; }
+.plan-details[hidden] { display: none; }
+.plan-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.popular {
+  background: #24365a;
+  color: #b9d0ff;
+  border-radius: 20px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
 </style>
 </head>
 <body>
@@ -122,9 +197,55 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 12px}
     <h2>Choisissez votre formule</h2>
     <p>Tarifs envisagés — aucun abonnement ni paiement n'est actif sur ce prototype.</p>
     <div class="plans">
-      <div class="plan"><h3>Lite</h3><div class="price">24,99 €<small>/mois</small></div><p>Tri manuel et jusqu'à 10 rappels actifs.</p></div>
-      <div class="plan" style="border-color:var(--blue)"><h3>Pro ✦</h3><div class="price">34,99 €<small>/mois</small></div><p>Tri IA envisagé, priorités et suggestions de relance.</p></div>
-      <div class="plan"><h3>Business</h3><div class="price">74,99 €<small>/mois</small></div><p>Fonctions Pro et gestion collaborative envisagée.</p></div>
+
+<div class="plans">
+  <div class="plan" role="button" tabindex="0"
+       aria-expanded="false" aria-controls="details-lite"
+       data-plan="lite">
+    <div class="plan-heading"><h3>Lite</h3><span>⌄</span></div>
+    <div class="price">24,99 €<small>/mois</small></div>
+    <div class="plan-details" id="details-lite" hidden>
+      <p>✓ Tri manuel des emails</p>
+      <p>✓ Priorités personnalisées</p>
+      <p>✓ Jusqu’à 10 rappels actifs</p>
+      <p>✓ Historique de démonstration</p>
+    </div>
+    <p>Appuyez pour découvrir les avantages.</p>
+  </div>
+
+  <div class="plan" role="button" tabindex="0"
+       aria-expanded="false" aria-controls="details-pro"
+       data-plan="pro" style="border-color:var(--blue)">
+    <div class="plan-heading">
+      <h3>Pro</h3>
+      <span class="popular">LE PLUS CHOISI</span>
+    </div>
+    <div class="price">34,99 €<small>/mois</small></div>
+    <div class="plan-details" id="details-pro" hidden>
+      <p>✓ Tout Lite</p>
+      <p>✓ Tri IA des emails</p>
+      <p>✓ Priorisation des prospects</p>
+      <p>✓ Rappels sans limite de forfait prévue</p>
+      <p>✓ Suggestions de relance par IA</p>
+    </div>
+    <p>Appuyez pour découvrir les avantages.</p>
+  </div>
+
+  <div class="plan" role="button" tabindex="0"
+       aria-expanded="false" aria-controls="details-business"
+       data-plan="business">
+    <div class="plan-heading"><h3>Business</h3><span>⌄</span></div>
+    <div class="price">74,99 €<small>/mois</small></div>
+    <div class="plan-details" id="details-business" hidden>
+      <p>✓ Tout Pro</p>
+      <p>✓ Gestion de plusieurs collaborateurs</p>
+      <p>✓ Suivi partagé des prospects</p>
+      <p>✓ Statistiques avancées</p>
+      <p>✓ Assistance prioritaire envisagée</p>
+    </div>
+    <p>Appuyez pour découvrir les avantages.</p>
+  </div>
+</div>
     </div>
   </section>
 </main>
